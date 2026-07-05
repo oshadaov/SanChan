@@ -1,0 +1,65 @@
+/* Design system global resets & utility variables */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #f7f5f1; /* Ivory */
+  color: #1a1612; /* Ink */
+  font-family: 'DM Sans', system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e8e4dd; /* Stone */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9c2b5; /* Dust */
+  border-radius: 3px;
+}
+
+/* Responsive navbar class overrides */
+.mobile-hamburger-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-hamburger-btn {
+    display: flex !important;
+  }
+  .desktop-nav-links {
+    display: none !important;
+  }
+}
