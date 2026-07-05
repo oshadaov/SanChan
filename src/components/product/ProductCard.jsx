@@ -160,7 +160,7 @@ export const ProductCard = ({ product, onAddToCart, onWishlistToggle, isWishlist
                       key={s}
                       onClick={() => {
                         setSelectedSize(s);
-                        onAddToCart(product, s);
+                        onAddToCart(product, s, product.colors?.[selectedColor]);
                         setShowSizes(false);
                       }}
                       style={{

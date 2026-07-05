@@ -3,26 +3,36 @@ import { useState } from "react";
 export function useCart() {
   const [items, setItems] = useState([]);
 
-  const add = (product, size) => {
+  const add = (product, size, color) => {
     setItems((prev) => {
-      const existing = prev.find((i) => i.id === product.id && i.size === size);
+      const existing = prev.find(
+        (i) => i.id === product.id && i.size === size && i.color === color
+      );
       if (existing) {
         return prev.map((i) =>
-          i.id === product.id && i.size === size ? { ...i, qty: i.qty + 1 } : i
+          i.id === product.id && i.size === size && i.color === color
+            ? { ...i, qty: i.qty + 1 }
+            : i
         );
       }
-      return [...prev, { ...product, size, qty: 1 }];
+      return [...prev, { ...product, size, color: color || null, qty: 1 }];
     });
   };
 
-  const remove = (id, size) => {
-    setItems((prev) => prev.filter((i) => !(i.id === id && i.size === size)));
+  const remove = (id, size, color) => {
+    setItems((prev) =>
+      prev.filter((i) => !(i.id === id && i.size === size && i.color === color))
+    );
   };
 
-  const update = (id, size, qty) => {
-    if (qty < 1) return remove(id, size);
+  const update = (id, size, qty, color) => {
+    if (qty < 1) return remove(id, size, color);
     setItems((prev) =>
-      prev.map((i) => (i.id === id && i.size === size ? { ...i, qty } : i))
+      prev.map((i) =>
+        i.id === id && i.size === size && i.color === color
+          ? { ...i, qty }
+          : i
+      )
     );
   };
 

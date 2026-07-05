@@ -74,7 +74,7 @@ export const CartDrawer = ({ cart, onClose, onUpdate, onRemove }) => {
           ) : (
             cart.items.map((item) => (
               <div
-                key={item.id + item.size}
+                key={item.id + item.size + (item.color || "")}
                 style={{
                   display: "flex",
                   gap: 16,
@@ -128,9 +128,28 @@ export const CartDrawer = ({ cart, onClose, onUpdate, onRemove }) => {
                       fontSize: 11,
                       color: tokens.colors.dust,
                       marginBottom: 8,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
                     }}
                   >
                     Size: {item.size}
+                    {item.color && (
+                      <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
+                        · Colour
+                        <span
+                          style={{
+                            display: "inline-block",
+                            width: 12,
+                            height: 12,
+                            borderRadius: "50%",
+                            background: item.color,
+                            border: "1px solid rgba(0,0,0,0.15)",
+                            flexShrink: 0,
+                          }}
+                        />
+                      </span>
+                    )}
                   </p>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <div
@@ -141,7 +160,7 @@ export const CartDrawer = ({ cart, onClose, onUpdate, onRemove }) => {
                       }}
                     >
                       <button
-                        onClick={() => onUpdate(item.id, item.size, item.qty - 1)}
+                        onClick={() => onUpdate(item.id, item.size, item.qty - 1, item.color)}
                         style={{
                           width: 28,
                           height: 28,
@@ -164,7 +183,7 @@ export const CartDrawer = ({ cart, onClose, onUpdate, onRemove }) => {
                         {item.qty}
                       </span>
                       <button
-                        onClick={() => onUpdate(item.id, item.size, item.qty + 1)}
+                        onClick={() => onUpdate(item.id, item.size, item.qty + 1, item.color)}
                         style={{
                           width: 28,
                           height: 28,
@@ -178,7 +197,7 @@ export const CartDrawer = ({ cart, onClose, onUpdate, onRemove }) => {
                       </button>
                     </div>
                     <button
-                      onClick={() => onRemove(item.id, item.size)}
+                      onClick={() => onRemove(item.id, item.size, item.color)}
                       style={{
                         background: "none",
                         border: "none",

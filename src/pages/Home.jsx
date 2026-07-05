@@ -5,6 +5,7 @@ import { CategoryGrid } from "../components/sections/CategoryGrid";
 import { BannerCTA } from "../components/sections/BannerCTA";
 import { Testimonials } from "../components/sections/Testimonials";
 import { Newsletter } from "../components/sections/Newsletter";
+import { OwnerProfile } from "../components/sections/OwnerProfile";
 import { ProductGrid } from "../components/product/ProductGrid";
 
 export default function Home({ onAddToCart, wishlist }) {
@@ -92,6 +93,7 @@ export default function Home({ onAddToCart, wishlist }) {
         onWishlistToggle={wishlist.toggle}
       />
 
+      <OwnerProfile />
       <Testimonials />
       <Newsletter />
     </div>
